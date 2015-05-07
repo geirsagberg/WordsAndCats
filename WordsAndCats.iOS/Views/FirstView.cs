@@ -4,29 +4,43 @@ using CoreGraphics;
 using Foundation;
 using ObjCRuntime;
 using UIKit;
+using WordsAndCats.Core.ViewModels;
+using Cirrious.CrossCore.WeakSubscription;
 
 namespace WordsAndCats.iOS.Views
 {
-    [Register("FirstView")]
-    public class FirstView : MvxViewController
+    [MvxFromStoryboard]
+    public partial class FirstView : MvxViewController<FirstViewModel>
     {
+        public FirstView(System.IntPtr handle) : base(handle)
+        {
+        }
+
+        MvxNamedNotifyPropertyChangedEventSubscription<string> catSubscription;        
+
         public override void ViewDidLoad()
         {
-            View = new UIView { BackgroundColor = UIColor.White };
             base.ViewDidLoad();
 
-			// ios7 layout
-            if (RespondsToSelector(new Selector("edgesForExtendedLayout")))
-            {
-               EdgesForExtendedLayout = UIRectEdge.None;
-            }
-			   
-            var label = new UILabel(new CGRect(10, 10, 300, 40));
-            Add(label);
-            var textField = new UITextField(new CGRect(10, 50, 300, 40));
-            Add(textField);
+            catSubscription = ViewModel.WeakSubscribe(() => ViewModel.CatImage, delegate {
+                
+                WebView.LoadHtmlString(ViewModel.CatImage, new NSUrl("http://localhost"));
+            });
+
+            var getCatButton = new UIBarButtonItem {
+                Title = "Get cat"
+            };
+
+            var getWordsButton = new UIBarButtonItem{
+                Title = "Get words"
+            };
+            NavigationItem.LeftBarButtonItem = getCatButton;
+            NavigationItem.RightBarButtonItem = getWordsButton;
 
             var set = this.CreateBindingSet<FirstView, Core.ViewModels.FirstViewModel>();
+            set.Bind(WordsLabel).To(vm => vm.RandomWords);
+            set.Bind(getCatButton).To(vm => vm.GetCatCommand);
+            set.Bind(getWordsButton).To(vm => vm.GetRandomWordsCommand);
             set.Apply();
         }
     }

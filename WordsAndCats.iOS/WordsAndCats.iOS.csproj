@@ -77,6 +77,9 @@
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="packages.config" />
+    <Compile Include="Views\FirstView.designer.cs">
+      <DependentUpon>FirstView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
@@ -86,15 +89,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
-    <Reference Include="Acr.MvvmCross.Plugins.UserDialogs, Version=1.1.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\Acr.MvvmCross.Plugins.UserDialogs.2.4.0\lib\Xamarin.iOS10\Acr.MvvmCross.Plugins.UserDialogs.dll</HintPath>
-    </Reference>
-    <Reference Include="Acr.MvvmCross.Plugins.UserDialogs.Touch, Version=1.1.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\Acr.MvvmCross.Plugins.UserDialogs.2.4.0\lib\Xamarin.iOS10\Acr.MvvmCross.Plugins.UserDialogs.Touch.dll</HintPath>
-    </Reference>
-    <Reference Include="BTProgressHUD, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\Acr.MvvmCross.Plugins.UserDialogs.2.4.0\lib\Xamarin.iOS10\BTProgressHUD.dll</HintPath>
-    </Reference>
     <Reference Include="Cirrious.CrossCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e16445fd9b451819">
       <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.3.5.1\lib\Xamarin.iOS10\Cirrious.CrossCore.dll</HintPath>
     </Reference>
@@ -119,11 +113,20 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Acr.UserDialogs">
+      <HintPath>..\packages\Acr.UserDialogs.3.3.3\lib\Xamarin.iOS10\Acr.UserDialogs.dll</HintPath>
+    </Reference>
+    <Reference Include="BTProgressHUD">
+      <HintPath>..\packages\Acr.UserDialogs.3.3.3\lib\Xamarin.iOS10\BTProgressHUD.dll</HintPath>
+    </Reference>
+    <Reference Include="Acr.MvvmCross.Plugins.UserDialogs">
+      <HintPath>..\packages\Acr.MvvmCross.Plugins.UserDialogs.3.0.0\lib\Xamarin.iOS10\Acr.MvvmCross.Plugins.UserDialogs.dll</HintPath>
+    </Reference>
+    <Reference Include="Acr.MvvmCross.Plugins.UserDialogs.Touch">
+      <HintPath>..\packages\Acr.MvvmCross.Plugins.UserDialogs.3.0.0\lib\Xamarin.iOS10\Acr.MvvmCross.Plugins.UserDialogs.Touch.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AppDelegate.cs.txt">
-      <DependentUpon>AppDelegate.cs</DependentUpon>
-    </Content>
     <Content Include="Entitlements.plist" />
     <Content Include="ToDo-MvvmCross\_ Touch UI.txt" />
   </ItemGroup>
@@ -134,4 +137,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <InterfaceDefinition Include="Views\FirstView.storyboard" />
+  </ItemGroup>
 </Project>

@@ -1,6 +1,7 @@
 using Cirrious.MvvmCross.ViewModels;
 using WordsAndCats.Core.Services;
 using Acr.MvvmCross.Plugins.UserDialogs;
+using Acr.UserDialogs;
 
 namespace WordsAndCats.Core.ViewModels
 {
@@ -9,9 +10,9 @@ namespace WordsAndCats.Core.ViewModels
     {
         IDataService dataService;
 
-        IUserDialogService userDialogService;
+        IUserDialogs userDialogService;
 
-        public FirstViewModel(IDataService dataService, IUserDialogService userDialogService)
+        public FirstViewModel(IDataService dataService, IUserDialogs userDialogService)
         {
             this.userDialogService = userDialogService;
             this.dataService = dataService;
